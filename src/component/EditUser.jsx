@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { editUser } from "../Redux/features/Users/Users";
+import { useNavigate } from "react-router-dom";
 
 export default function EditUser() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.users).find(
     (user) => user.id === id
   );
@@ -26,6 +28,7 @@ export default function EditUser() {
   const addUserHandler = (e) => {
     e.preventDefault();
     dispatch(editUser({ id: id, name: users.name, email: users.email }));
+    navigate("/");
   };
   return (
     <div className="container">
