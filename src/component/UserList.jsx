@@ -1,4 +1,31 @@
+import { useSelector } from "react-redux";
+
 export default function UserList() {
+  const users = useSelector((state) => state.users).map((user) => {
+    return (
+      <table className="u-full-width" key={user.id}>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{user.id}</td>
+            <td>{user.name}</td>
+            <td>{user.email}</td>
+            <td>
+              <button>Delete</button>
+              <button>Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  });
   return (
     <div className="container">
       <div className="row">
@@ -12,29 +39,7 @@ export default function UserList() {
           <button className="button-primary">Add user</button>
         </div>
       </div>
-      <div className="row">
-        <table className="u-full-width">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Dave Gamache</td>
-              <td>dave@gmail.com</td>
-              <td>
-                <button>Delete</button>
-                <button>Edit</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <div className="row">{users}</div>
     </div>
   );
 }
