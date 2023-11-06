@@ -1,0 +1,22 @@
+.mylink {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.mylink:hover {
+  color: yellow;
+}
+
+/* styling users */
+
+.btns {
+    display: flex;
+   gap: 10px;
+}
+
+.btns button:hover {
+    background-color: pink;
+    color: blue;
+}

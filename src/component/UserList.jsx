@@ -1,6 +1,12 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteUser } from "../Redux/features/Users/Users"; 
+import "./styles.css";
 
 export default function UserList() {
+    const dispatch = useDispatch()
+    const handleDelete = (id) => {
+      dispatch(deleteUser(id))
+    }
   const users = useSelector((state) => state.users).map((user) => {
     return (
       <table className="u-full-width" key={user.id}>
@@ -17,8 +23,8 @@ export default function UserList() {
             <td>{user.id}</td>
             <td>{user.name}</td>
             <td>{user.email}</td>
-            <td>
-              <button>Delete</button>
+            <td className="btns">
+              <button onClick={() => handleDelete(user.id)}>Delete</button>
               <button>Edit</button>
             </td>
           </tr>
@@ -30,14 +36,6 @@ export default function UserList() {
     <div className="container">
       <div className="row">
         <h1>Redux Contact List</h1>
-      </div>
-      <div className="row">
-        <div className="two columns">
-          <button className="button-primary">Load users</button>
-        </div>
-        <div className="two columns">
-          <button className="button-primary">Add user</button>
-        </div>
       </div>
       <div className="row">{users}</div>
     </div>

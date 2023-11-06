@@ -1,36 +1,8 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addUser } from "../Redux/features/Users/Users";
+//import { useState } from "react";
+import { useSelector } from "react-redux";
 
-export default function AddUsers() {
-    const dispatch = useDispatch()
-   const [ user, setUser] = useState({
-         name: '',
-         email: ''
-   })
-
-   const handleInput = (e) => {
-    const { name, value} = e.target
-   setUser(prevState => {
-    return {
-        ...prevState,
-        [name]: value
-    }
-   })
-}
-
-const addUserHandler = (e) => {
-    e.preventDefault()
-    if(email === '' || name === '') return alert('Please fill in all fields')
-    dispatch(addUser(user))
-    setUser({
-        name: '',
-        email: ''
-    })
-}
-
-const { name, email } = user
-console.log(user)
+export default function EditUser() {
+    const user = useSelector(state => state.users)
   return (
     <div className="container">
       <div className="row">
@@ -58,7 +30,9 @@ console.log(user)
             onChange={handleInput}
             value={email}
           />
-          <button className="button-primary" onClick={addUserHandler}>Add user</button>
+          <button className="button-primary" onClick={addUserHandler}>
+            Add user
+          </button>
         </div>
       </div>
     </div>

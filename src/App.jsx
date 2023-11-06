@@ -4,6 +4,8 @@ import './App.css'
 
 import UserList from './component/UserList';
 import { Routes, Route } from 'react-router-dom';
+import AddUsers from './component/AddUsers';
+import Layout from './component/Layout';
 
 
 function App() {
@@ -27,8 +29,10 @@ function App() {
   return (
     <>
       {/* <h1 style={{fontSize: 10}}>{myTodos}</h1> */}
+      <Layout />
       <Routes>
         <Route path="/" element={<UserList />} /> 
+        <Route path="/adduser" element={<AddUsers />} />
       </Routes>
     </>
   );
