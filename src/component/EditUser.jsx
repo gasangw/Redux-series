@@ -1,8 +1,30 @@
-//import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { editUser } from "../Redux/features/Users/Users";
 
 export default function EditUser() {
-    const user = useSelector(state => state.users)
+  const { id } = useParams();
+  const user = useSelector((state) => state.users).find(user => user.id === id);
+  const [users, setUsers] = useState({
+    name: user.name,
+    email: user.email,
+  })
+    const dispatch = useDispatch();
+ const { name, email } = users;
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setUsers((prevState) => {
+        return {
+            ...prevState,
+            [name]: value
+        }
+    })
+  };
+  const addUserHandler = (e) => {
+    e.preventDefault();
+    dispatch(editUser({ id: id, name: users.name, email: users.email }))
+  };
   return (
     <div className="container">
       <div className="row">
@@ -31,7 +53,7 @@ export default function EditUser() {
             value={email}
           />
           <button className="button-primary" onClick={addUserHandler}>
-            Add user
+            Edit user
           </button>
         </div>
       </div>

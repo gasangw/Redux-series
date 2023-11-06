@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUser } from "../Redux/features/Users/Users"; 
 import "./styles.css";
+import { Link } from "react-router-dom";
 
 export default function UserList() {
     const dispatch = useDispatch()
@@ -25,7 +26,9 @@ export default function UserList() {
             <td>{user.email}</td>
             <td className="btns">
               <button onClick={() => handleDelete(user.id)}>Delete</button>
-              <button>Edit</button>
+              <button>
+                <Link to={`/edituser/${user.id}`}>Edit</Link>
+              </button>
             </td>
           </tr>
         </tbody>
