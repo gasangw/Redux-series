@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addUser } from "../Redux/features/Users/Users";
+import { nanoid } from "nanoid";
 
 export default function AddUsers() {
     const dispatch = useDispatch()
@@ -22,7 +23,7 @@ export default function AddUsers() {
 const addUserHandler = (e) => {
     e.preventDefault()
     if(email === '' || name === '') return alert('Please fill in all fields')
-    dispatch(addUser(user))
+    dispatch(addUser({id:nanoid(), name, email}))
     setUser({
         name: '',
         email: ''
@@ -30,7 +31,6 @@ const addUserHandler = (e) => {
 }
 
 const { name, email } = user
-console.log(user)
   return (
     <div className="container">
       <div className="row">

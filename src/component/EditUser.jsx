@@ -5,25 +5,27 @@ import { editUser } from "../Redux/features/Users/Users";
 
 export default function EditUser() {
   const { id } = useParams();
-  const user = useSelector((state) => state.users).find(user => user.id === id);
+  const user = useSelector((state) => state.users).find(
+    (user) => user.id === id
+  );
   const [users, setUsers] = useState({
     name: user.name,
     email: user.email,
-  })
-    const dispatch = useDispatch();
- const { name, email } = users;
+  });
+  const dispatch = useDispatch();
+  const { name, email } = users;
   const handleInput = (e) => {
     const { name, value } = e.target;
     setUsers((prevState) => {
-        return {
-            ...prevState,
-            [name]: value
-        }
-    })
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
   };
   const addUserHandler = (e) => {
     e.preventDefault();
-    dispatch(editUser({ id: id, name: users.name, email: users.email }))
+    dispatch(editUser({ id: id, name: users.name, email: users.email }));
   };
   return (
     <div className="container">
